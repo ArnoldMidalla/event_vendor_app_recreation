@@ -1,98 +1,148 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Bell, ChevronDown, MapPin, Menu } from "lucide-react-native";
+import React, { useState } from "react";
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { SelectList } from "react-native-dropdown-select-list";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { useRouter } from "expo-router";
 
-export default function HomeScreen() {
+const index = () => {
+  const [selected, setSelected] = useState("Lekki phase 1, Lagos");
+
+  const locations = [
+    { key: "1", value: "Lekki phase 1, Lagos" },
+    { key: "2", value: "Victoria Island, Lagos" },
+    { key: "3", value: "Ikeja, Lagos" },
+    { key: "4", value: "Yaba, Lagos" },
+    { key: "5", value: "Surulere, Lagos" },
+  ];
+
+  const router = useRouter();
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    <SafeAreaView className="px-6 flex-1 flex flex-col gap-6 bg-[#fbfafb]">
+      <StatusBar barStyle="dark-content" />
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      <View className="pt-10 flex flex-row justify-between">
+        <View style={styles.locationWrapper}>
+          <MapPin size={20} color="#FF6B35" strokeWidth={2.5} />
+          <SelectList
+            setSelected={setSelected}
+            data={locations}
+            placeholder={selected}
+            search={false}
+            save="value"
+            boxStyles={styles.boxStyles}
+            inputStyles={styles.inputStyles}
+            dropdownStyles={styles.dropdownStyles}
+            dropdownItemStyles={styles.dropdownItemStyles}
+            dropdownTextStyles={styles.dropdownTextStyles}
+            arrowicon={
+              <ChevronDown size={18} color="#1f2937" strokeWidth={2.5} />
+            }
+            defaultOption={{ key: "1", value: "Lekki phase 1, Lagos" }}
+          />
+        </View>
+        <TouchableOpacity
+          className="bg-white rounded-xl border"
+          onPress={() => router.push("/notifications/page")}
+          style={{ padding: 8 }}
+        >
+          <Bell size={20} color={"grey"} />
+        </TouchableOpacity>
+      </View>
+      <View className="max-w-64">
+        <Text className="text-2xl font-dmsansMedium tracking-tighter leading-8 text-black/60">
+          What do you want to do today{" "}
+          <Text className="font-dmsansMedium text-black">Arnold?</Text>
+        </Text>
+      </View>
+      <View className="flex flex-row items-center gap-4" style={{ height: 46 }}>
+        <TextInput
+          placeholder="Search for events or vendors"
+          className="flex-1 font-dmsans border bg-white rounded-lg px-4 py-2 h-full"
+        />
+        <TouchableOpacity
+          className="h-full w-12 flex flex-row justify-center items-center bg-sec rounded-lg"
+          style={{ width: 46 }}
+        >
+          <Menu size={24} color="#fff" />
+        </TouchableOpacity>
+      </View>
+      <View className="flex flex-row w-full gap-4">
+        <TouchableOpacity className="bg-sec border rounded-2xl h-full w-40"></TouchableOpacity>
+        <TouchableOpacity className="bg-sec border rounded-2xl h-full"></TouchableOpacity>
+      </View>
+      <TouchableOpacity onPress={()=>router.push("/onboarding/page")}><Text>Test</Text></TouchableOpacity>
+    </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  locationWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  boxStyles: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    height: 32,
+    borderWidth: 0,
+    borderRadius: 0,
+    // backgroundColor: "transparent",
+    flex: 1,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  inputStyles: {
+    fontSize: 16,
+    fontWeight: "400",
+    color: "#1f2937",
+    marginLeft: 0,
+    paddingLeft: 0,
+    fontFamily: "DMSans_400Regular",
+  },
+  dropdownStyles: {
+    position: "absolute",
+    top: 42,
+    left: -28,
+    right: -16,
+    width: "auto",
+    minWidth: 180,
+    backgroundColor: "#ffffff",
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 5,
+    paddingVertical: 4,
+    zIndex: 1000,
+  },
+  dropdownItemStyles: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    marginHorizontal: 4,
+  },
+  dropdownTextStyles: {
+    fontSize: 15,
+    color: "#374151",
+    fontFamily: "DMSans_400Regular",
   },
 });
+
+export default index;
