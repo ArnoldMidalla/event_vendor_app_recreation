@@ -1,5 +1,11 @@
 import { Tabs } from "expo-router";
-import { CalendarCheck2, Heart, Home, MessageCircle, UserRound } from "lucide-react-native";
+import {
+  CalendarCheck2,
+  Heart,
+  Home,
+  MessageCircle,
+  UserRound,
+} from "lucide-react-native";
 import React from "react";
 import { Text, View } from "react-native";
 
@@ -14,8 +20,12 @@ function TabIcon({ focused, icon: Icon, title }: any) {
         size={20}
         strokeWidth={2}
       />
-      <Text className="text-xs font-dmsans  text-center text-nowrap" numberOfLines={1} >
-        {title || "nada"}
+      <Text
+        className={`text-xs text-center tracking-tight ${
+          focused ? "text-sec font-dmsansBold" : "font-dmsans text-black/70"
+        }`}
+      >
+        {title}
       </Text>
     </View>
   );
@@ -79,7 +89,7 @@ export default function _layout() {
           ),
         }}
       />
-      
+
       <Tabs.Screen
         name="profile"
         options={{
