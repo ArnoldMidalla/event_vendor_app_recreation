@@ -12,6 +12,7 @@ interface propsss {
   image: string;
   price: string;
   type: string;
+  id: number;
 }
 
 export default function ReuseEvents({
@@ -21,12 +22,18 @@ export default function ReuseEvents({
   image,
   price,
   type,
+  id,
 }: propsss) {
   const router = useRouter();
   return (
     <Pressable
       className="p-2 border h-fit rounded-2xl border-neutral-300 bg-white flex flex-col gap-2 relative"
-      onPress={() => router.push("/onboarding/page")}
+      onPress={() =>
+        router.push({
+          pathname: "/singleEvent/[id]",
+          params: { id: id.toString() },
+        })
+      }
     >
       <BlurView
         intensity={40}

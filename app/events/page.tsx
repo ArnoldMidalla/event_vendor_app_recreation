@@ -128,6 +128,7 @@ export default function Events() {
                   image={item.image}
                   price={item.price}
                   type={item.type}
+                  id={item.id}
                 />
               )}
               keyExtractor={(item) => item.id.toString()} // Extracts a unique key for each item . id must be string, so this or convert id to "1"
@@ -193,6 +194,7 @@ export default function Events() {
                   image={item.image}
                   price={item.price}
                   type={item.type}
+                  id={item.id}
                 />
               )}
               keyExtractor={(item) => item.id.toString()} // Extracts a unique key for each item . id must be string, so this or convert id to "1"

@@ -26,7 +26,7 @@ const locations = [
   { key: "5", value: "Surulere, Lagos" },
 ];
 
-const Data = [
+export const Data = [
   {
     id: 1,
     title: "Asake's Nu Tour",
@@ -165,6 +165,7 @@ export default function Index() {
                   image={item.image}
                   price={item.price}
                   type={item.type}
+                  id={item.id}
                 />
               )}
               keyExtractor={(item) => item.id.toString()} // Extracts a unique key for each item . id must be string, so this or convert id to "1"
