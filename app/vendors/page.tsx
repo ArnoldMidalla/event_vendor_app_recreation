@@ -14,56 +14,7 @@ import ReusePromotions from "../components/reusePromotions";
 import ReuseVendors from "../components/reuseVendors";
 import SearchBar from "../components/searchbar";
 
-const filters = [
-  "All",
-  "Catering",
-  "Photography",
-  "Logistics",
-  "Decorations",
-  "Lightening",
-];
-
-const Data = [
-  {
-    id: 1,
-    title: "Chef Ireti's kitchen",
-    rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    bookings: 100,
-    type: "Catering",
-    subType: "Caterer",
-    price: "8,000",
-  },
-  {
-    id: 2,
-    title: "DJ Shakur",
-    rating: 5,
-    image:
-      "https://images.unsplash.com/photo-1599423424751-54e0c1187a02?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    bookings: 80,
-    type: "Music",
-    subType: "DJ",
-    price: "20,000",
-  },
-];
-
-const promotionData = [
-  {
-    id: 1,
-    image:
-      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    mainText: "This weeks top catering discounts",
-    subText: "10% off orders booked before Aug 6",
-  },
-  {
-    id: 2,
-    image:
-      "https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    mainText: "Capture the moment",
-    subText: "Up to 20% off on select products",
-  },
-];
+import { vendorsFilters,VendorsData, VendorsPromotionData } from "../data";
 
 export default function Vendors() {
   const router = useRouter();
@@ -88,7 +39,7 @@ export default function Vendors() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ gap: 8, paddingHorizontal: 24 }}
           >
-            {filters.map((filter, index) => {
+            {vendorsFilters.map((filter, index) => {
               const isSelected = filter === selected;
               return (
                 <Pressable
@@ -123,7 +74,7 @@ export default function Vendors() {
           </View>
           <View>
             <FlatList
-              data={Data}
+              data={VendorsData}
               horizontal
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => (
@@ -158,7 +109,7 @@ export default function Vendors() {
           </View>
           <View>
             <FlatList
-              data={promotionData}
+              data={VendorsPromotionData}
               horizontal
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => (
@@ -189,7 +140,7 @@ export default function Vendors() {
           </View>
           <View>
             <FlatList
-              data={Data}
+              data={VendorsData}
               horizontal
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => (

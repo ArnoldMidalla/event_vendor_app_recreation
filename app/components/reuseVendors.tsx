@@ -12,7 +12,7 @@ interface propsss {
   bookings: number;
   type: string;
   subType: string;
-  price: string;
+  price: number;
 }
 
 export default function ReuseVendors({

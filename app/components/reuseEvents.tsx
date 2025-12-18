@@ -10,7 +10,7 @@ interface propsss {
   address: string;
   date: string;
   image: string;
-  price: string;
+  price: number;
   type: string;
   id: number;
 }

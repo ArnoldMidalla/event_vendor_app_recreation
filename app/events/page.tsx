@@ -13,49 +13,7 @@ import Backbar from "../components/backbar";
 import ReuseEvents from "../components/reuseEvents";
 import ReusePromotions from "../components/reusePromotions";
 import SearchBar from "../components/searchbar";
-
-const filters = ["All", "Food", "Concert", "Art", "Festivals", "Sports"];
-
-const Data = [
-  {
-    id: 1,
-    title: "Asake's Nu Tour",
-    address: "Teslim Balogun Stadium, Surulere",
-    date: "02.August.2025 - 5:00pm",
-    // image: "/main.jpg",
-    image:
-      "https://images.unsplash.com/photo-1522158637959-30385a09e0da?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    price: "45,000",
-    type: "Concert",
-  },
-  {
-    id: 2,
-    title: "Lagos Food Festival",
-    address: "Landmark Centre, Ikeja",
-    date: "03.August.2025 - 5:00pm",
-    image:
-      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    price: "15,000",
-    type: "Food",
-  },
-];
-
-const promotionData = [
-  {
-    id: 1,
-    image:
-      "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    mainText: "Lagos Food Festival",
-    subText: "Landmark Centre, Ikeja",
-  },
-  {
-    id: 2,
-    image:
-      "https://images.unsplash.com/photo-1628336707631-68131ca720c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    mainText: "Ibadan wine tasting",
-    subText: "Market Road, Ibadan",
-  },
-];
+import { Data, promotionData, eventFilter } from "../data";
 
 export default function Events() {
   const [selected, setSelected] = useState("All");
@@ -80,7 +38,7 @@ export default function Events() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ gap: 8, paddingHorizontal: 24 }}
           >
-            {filters.map((filter, index) => {
+            {eventFilter.map((filter, index) => {
               const isSelected = filter === selected;
               return (
                 <Pressable

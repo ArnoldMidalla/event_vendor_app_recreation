@@ -1,5 +1,7 @@
 import { Stack } from "expo-router";
 
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 import "./globals.css";
 
 import {
@@ -20,13 +22,22 @@ export default function RootLayout() {
     return null;
   }
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      <Stack.Screen name="notifications/page" options={{ headerShown: false }} />
-      <Stack.Screen name="onboarding/page" options={{ headerShown: false }} />
-      <Stack.Screen name="events/page" options={{ headerShown: false }} />
-      <Stack.Screen name="vendors/page" options={{ headerShown: false }} />
-      <Stack.Screen name="singleEvent/[id]" options={{ headerShown: false }} />
-    </Stack>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="notifications/page"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="onboarding/page" options={{ headerShown: false }} />
+        <Stack.Screen name="events/page" options={{ headerShown: false }} />
+        <Stack.Screen name="vendors/page" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="singleEvent/[id]"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="checkout/[id]" options={{ headerShown: false }} />
+      </Stack>
+    </GestureHandlerRootView>
   );
 }
