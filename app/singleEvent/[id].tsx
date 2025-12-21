@@ -267,7 +267,7 @@ export default function SingleEvent() {
               </Animated.Text>
             </View>
             <Pressable
-              onPress={() => router.push("/checkout/[id]")}
+              onPress={() => router.push(`/checkout/${test.id}`)}
               // onPress={router.push({
               //   pathname: "/checkout/[id]",
               //   params: { id: test.id.toString() },
