@@ -1,4 +1,5 @@
 import {
+  BottomSheetBackdrop,
   BottomSheetModal,
   BottomSheetModalProvider,
   BottomSheetView,
@@ -6,10 +7,23 @@ import {
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { CalendarDays, ChevronLeft, Heart, MapPin } from "lucide-react-native";
 import React, { useCallback, useMemo, useRef, useState } from "react";
-import { Pressable, StatusBar, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import ChooseTicket from "../components/chooseTicket";
 import { Data } from "../data";
+
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 export default function SingleEvent() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -65,22 +79,43 @@ export default function SingleEvent() {
 
   const router = useRouter();
 
+  const renderBackdrop = useCallback(
+    (props: any) => (
+      <BottomSheetBackdrop
+        {...props}
+        appearsOnIndex={0}
+        disappearsOnIndex={-1}
+        opacity={0.5} // adjust darkness here (0.3–0.6 is sweet spot)
+      />
+    ),
+    []
+  );
+
+  const priceAnim = useSharedValue(1);
+
+  React.useEffect(() => {
+    priceAnim.value = 1.15;
+
+    priceAnim.value = withTiming(1, { duration: 200 });
+  }, [totalPrice]);
+
+  const animatedPriceStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: priceAnim.value }],
+    opacity: priceAnim.value > 1 ? 0.8 : 1,
+  }));
+
   // renders
   return (
     <GestureHandlerRootView style={styles.container}>
       <BottomSheetModalProvider>
         <StatusBar barStyle={"default"} />
         <View className="flex-1 relative">
-          {/* {test.image ? (
-            <Image
-              source={{ uri: test.image }}
-              className="w-full h-96 absolute"
-              style={{ zIndex: -1 }}
-            />
-          ) : (
-            <View className="w-full h-96 absolute bg-emerald-800"></View>
-          )} */}
-          <View className="w-full h-96 absolute bg-emerald-800"></View>
+          <Image
+            source={{ uri: test.image }}
+            className="w-full h-96 absolute"
+            style={{ zIndex: -1 }}
+          />
+          {/* <View className="w-full h-96 absolute bg-emerald-800"></View> */}
           {/* back */}
           <View className="flex w-full flex-row justify-between items-center px-6 absolute top-16">
             <Pressable
@@ -133,18 +168,18 @@ export default function SingleEvent() {
             </View>
             <View className="w-full h-[0.15rem] rounded-full bg-neutral-300" />
 
-            <View className="bg-[#faf0ea] p-4 flex flex-col gap-2 rounded-lg">
+            <View className="bg-[#faf0ea] p-4 flex flex-col gap-1.5 rounded-lg">
               <Text className="text-sec tracking-tight font-dmsansBold">
                 Please read the following
               </Text>
-              <Text className="text-sec tracking-tight font-dmsansMedium leading-[1.2rem]">
+              <Text className="text-sec text-sm tracking-tight font-dmsansMedium leading-[1.2rem]">
                 This is a high capacity event. Expect large crowds and limited
                 sitting
               </Text>
-              <Text className="text-sec tracking-tight font-dmsansMedium leading-[1.2rem]">
+              <Text className="text-sec text-sm tracking-tight font-dmsansMedium leading-[1.2rem]">
                 Prohibited items include bottles, sharp objects and vapes
               </Text>
-              <Text className="text-sec tracking-tight font-dmsansMedium leading-[1.2rem]">
+              <Text className="text-sec text-sm tracking-tight font-dmsansMedium leading-[1.2rem]">
                 This concert may contain loud sounds and flashing lights
               </Text>
             </View>
@@ -167,11 +202,22 @@ export default function SingleEvent() {
           </View>
         </View>
 
+        {/* <BottomSheetModal
+          ref={bottomSheetModalRef}
+          snapPoints={snapPoints}
+          onChange={handleSheetChanges}
+          enableDynamicSizing={false}
+          backgroundStyle={{
+            borderTopLeftRadius: 24,
+            borderTopRightRadius: 24,
+          }}
+        > */}
         <BottomSheetModal
           ref={bottomSheetModalRef}
           snapPoints={snapPoints}
           onChange={handleSheetChanges}
           enableDynamicSizing={false}
+          backdropComponent={renderBackdrop}
           backgroundStyle={{
             borderTopLeftRadius: 24,
             borderTopRightRadius: 24,
@@ -210,9 +256,15 @@ export default function SingleEvent() {
               <Text className="font-dmsansBold text-lg tracking-tighter">
                 Total price:
               </Text>
-              <Text className="font-dmsansBold text-lg tracking-tighter">
+              {/* <Text className="font-dmsansBold text-lg tracking-tighter">
                 N{totalPrice}
-              </Text>
+              </Text> */}
+              <Animated.Text
+                style={animatedPriceStyle}
+                className="font-dmsansBold text-lg tracking-tighter"
+              >
+                N{totalPrice}
+              </Animated.Text>
             </View>
             <Pressable
               onPress={() => router.push("/checkout/[id]")}

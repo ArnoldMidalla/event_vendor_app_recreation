@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const page = () => {
   const router = useRouter();
   return (
-    <SafeAreaView className="flex-1 bg-white flex-col justify-end px-6 py-6 gap-1">
+    <SafeAreaView className="flex-1 bg-main flex-col justify-end px-6 py-6 gap-1">
       <View className="h-[30rem] flex justify-center items-center">
 
       <Image source={require("@/public/on.jpg")} className="w-72 h-72" />

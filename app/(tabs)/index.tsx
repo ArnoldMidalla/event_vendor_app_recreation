@@ -1,7 +1,8 @@
 import { Bell, ChevronDown, MapPin } from "lucide-react-native";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   FlatList,
+  Image,
   Pressable,
   ScrollView,
   StatusBar,
@@ -18,6 +19,7 @@ import ReuseEvents from "../components/reuseEvents";
 import ReuseVendors from "../components/reuseVendors";
 import SearchBar from "../components/searchbar";
 
+import React from "react";
 import "react-native-gesture-handler";
 import { Data, locations, VendorsData } from "../data";
 
@@ -60,7 +62,8 @@ export default function Index() {
           </View>
           <Pressable
             className="bg-white rounded-xl border-[1px] border-neutral-300"
-            onPress={() => router.push("/notifications/page")}
+            // onPress={() => router.push("/notifications/page")}
+            onPress={() => router.push("/onboarding/page")}
             style={{ padding: 8 }}
           >
             <Bell size={20} color={"#262626"} />
@@ -76,15 +79,29 @@ export default function Index() {
         </View>
         <SearchBar placeholder="Search for events or vendors" />
         <View className="flex flex-row w-full justify-between h-28 px-6">
-          <Pressable className="bg-sec h-full w-[10.6rem] rounded-xl relative">
-            <Text className="font-dmsans top-2 left-2 text-white">
+          <Pressable onPress={()=> router.push("/events/page")} className="h-full w-[10.6rem] rounded-xl relative overflow-hidden">
+            <Text
+              className="font-dmsans top-4 left-2 text-white absolute z-10"
+              style={{ zIndex: 10 }}
+            >
               Find Event
             </Text>
+            <Image
+              source={require("@/public/uno.png")}
+              className="w-full h-full object-cover"
+            />
           </Pressable>
-          <Pressable className="border border-sec  h-full w-[10.6rem] rounded-xl relative">
-            <Text className="font-dmsans top-2 left-2 text-sec">
-              Find Event
+          <Pressable onPress={()=> router.push("/vendors/page")} className="border border-sec h-full w-[10.6rem] rounded-xl relative overflow-hidden">
+            <Text
+              className="font-dmsans top-2 left-2 text-sec absolute z-10"
+              style={{ zIndex: 10 }}
+            >
+              Find Vendor
             </Text>
+            <Image
+              source={require("@/public/trs.png")}
+              className="w-full h-full object-cover"
+            />
           </Pressable>
         </View>
         <View className="flex flex-col gap-4">
@@ -157,9 +174,9 @@ export default function Index() {
             />
           </View>
         </View>
-        <Pressable onPress={() => router.push("/onboarding/page")}>
+        {/* <Pressable onPress={() => router.push("/onboarding/page")}>
           <Text>onboarding</Text>
-        </Pressable>
+        </Pressable> */}
       </ScrollView>
     </SafeAreaView>
   );

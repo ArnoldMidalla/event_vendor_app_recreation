@@ -21,6 +21,7 @@ export const Data = [
     type: "Concert",
     about:
       "Get ready for an electrifying night with Asake live in Lagos! Asake's Nu Tour is set to tale over the Teslim Balogun Stadium with energetic performances, stunning visuals, and unforgettable vibes.",
+    heart: false,
   },
   {
     id: 2,
@@ -28,13 +29,14 @@ export const Data = [
     address: "Landmark Centre, Ikeja",
     date: "03.August.2025 - 5:00pm",
     image:
-      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1981&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=1547&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     price: 15000,
     vipPrice: 75000,
     backstagePass: 120000,
     type: "Food",
     about:
       "The Lagos Food Festival is basically an all you can eat buffet where you get to taste different kinds of meals and dishes you'd probably never have tasted in your lifetime. Get rready to eat toy your satisfaction",
+    heart: false,
   },
 ];
 

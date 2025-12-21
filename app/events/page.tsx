@@ -44,14 +44,14 @@ export default function Events() {
                 <Pressable
                   key={index}
                   onPress={() => setSelected(filter)}
-                  className={`px-4 py-2 rounded-lg border ${
+                  className={`px-4 py-2 rounded-lg border duration-300 transition-all ${
                     isSelected
                       ? "bg-sec border-sec"
                       : "bg-main border-neutral-300"
                   }`}
                 >
                   <Text
-                    className={`font-dmsansMedium ${
+                    className={`font-dmsansMedium duration-300 transition-all ${
                       isSelected ? "text-white" : "text-neutral-500"
                     }`}
                   >

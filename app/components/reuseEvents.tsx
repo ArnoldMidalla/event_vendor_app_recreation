@@ -3,7 +3,7 @@ import { Image, Pressable, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
 import { BlurView } from "expo-blur";
-import { CalendarDays, MapPin } from "lucide-react-native";
+import { CalendarDays, Heart, MapPin } from "lucide-react-native";
 
 interface propsss {
   title: string;
@@ -48,7 +48,11 @@ export default function ReuseEvents({
         className="w-52 h-32 rounded-xl"
         // style={{width: 200, height: 140}}
       />
+      <View className="flex flex-row justify-between items-center">
+
       <Text className="font-dmsansMedium tracking-tight">{title}</Text>
+      <Heart color={"#8e8e8e"} size={17} />
+      </View>
       <View className="flex flex-row items-end gap-0.5">
         <MapPin color={"#8e8e8e"} size={13} />
         <Text className="font-dmsansMedium text-xs text-black/70">
