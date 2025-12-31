@@ -10,6 +10,7 @@ import React, { useCallback, useMemo, useRef, useState } from "react";
 import {
   Image,
   Pressable,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -24,9 +25,17 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import TopNav from "../components/topNav";
 
 export default function SingleEvent() {
   const { id } = useLocalSearchParams<{ id: string }>();
+
+  const [hearted, setHearted] = useState(false);
+
+  function flip() {
+    setHearted(!hearted);
+  }
+
   // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
@@ -112,35 +121,23 @@ export default function SingleEvent() {
         <View className="flex-1 relative">
           <Image
             source={{ uri: test.image }}
-            className="w-full h-96 absolute"
+            className="w-full h-96 absolute bg-emerald-900"
             style={{ zIndex: -1 }}
           />
-          {/* <View className="w-full h-96 absolute bg-emerald-800"></View> */}
-          {/* back */}
-          <View className="flex w-full flex-row justify-between items-center px-6 absolute top-16">
-            <Pressable
-              className="bg-white rounded-xl border-[1px] border-neutral-300"
-              onPress={() => router.back()}
-              style={{ padding: 8, alignSelf: "flex-start" }}
-            >
-              <ChevronLeft size={20} color={"#262626"} />
-            </Pressable>
-            <Pressable
-              className="bg-white rounded-xl border-[1px] border-neutral-300"
-              onPress={() => router.back()}
-              style={{ padding: 8, alignSelf: "flex-start" }}
-            >
-              <Heart size={20} color={"#262626"} />
-            </Pressable>
-          </View>
-          <View className="flex-1 mt-80 bg-white rounded-t-3xl px-6 pt-8 gap-4">
+
+          {/* top nav */}
+          <TopNav flip={flip} hearted={hearted}/>
+
+          {/* main content */}
+          <ScrollView showsVerticalScrollIndicator={false}>
+          <View className="flex-1 mt-80 bg-white rounded-t-3xl px-6 pt-8 gap-4 pb-32">
             <View className="bg-sec py-2 px-3 rounded-full self-start">
               <Text className="font-dmsansMedium text-xs text-white">
                 {test.type}
               </Text>
             </View>
             <View className="flex gap-2">
-              <Text className="font-dmsansMedium text-2xl tracking-tight">
+              <Text className="font-dmsansSemi text-2xl tracking-tighter">
                 {test.title}
               </Text>
               <View className="flex flex-row gap-1">
@@ -159,17 +156,17 @@ export default function SingleEvent() {
             </View>
             <View className="w-full h-[0.15rem] rounded-full bg-neutral-300" />
             <View className="flex flex-col gap-1">
-              <Text className="font-dmsansMedium text-xl tracking-tight">
+              <Text className="font-dmsansMedium text-xl tracking-tighter">
                 About the event
               </Text>
-              <Text className="font-dmsansMedium text-black/70 leading-[1.2rem] text-sm">
+              <Text className="font-dmsansMedium text-black/70 leading-tight text-sm">
                 {test.about}
               </Text>
             </View>
             <View className="w-full h-[0.15rem] rounded-full bg-neutral-300" />
 
-            <View className="bg-[#faf0ea] p-4 flex flex-col gap-1.5 rounded-lg">
-              <Text className="text-sec tracking-tight font-dmsansBold">
+            <View className="bg-[#faf0ea] p-4 flex flex-col gap-1 rounded-lg">
+              <Text className="text-sec tracking-tighter font-dmsansSemi">
                 Please read the following
               </Text>
               <Text className="text-sec text-sm tracking-tight font-dmsansMedium leading-[1.2rem]">
@@ -184,6 +181,7 @@ export default function SingleEvent() {
               </Text>
             </View>
           </View>
+          </ScrollView>
           <View className="flex flex-row justify-between absolute bottom-0 pt-4 pb-10 items-center flex-1 w-full px-6 bg-white">
             <Text className="font-dmsansBold text-2xl text-sec tracking-tighter">
               N{test.price}

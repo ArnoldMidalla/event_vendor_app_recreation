@@ -7,6 +7,7 @@ import "./globals.css";
 import {
   DMSans_400Regular,
   DMSans_500Medium,
+  DMSans_600SemiBold,
   DMSans_700Bold,
   useFonts,
 } from "@expo-google-fonts/dm-sans";
@@ -15,6 +16,7 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     DMSans_400Regular,
     DMSans_500Medium,
+    DMSans_600SemiBold,
     DMSans_700Bold,
   });
 
@@ -36,7 +38,31 @@ export default function RootLayout() {
           name="singleEvent/[id]"
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="singleVendor/[id]"
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="checkout/[id]" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="singleMessage/[id]"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="vendorCheckout/customPack/[id]"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="vendorCheckout/checkout/[id]"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="singleTicket/[id]"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="singleBooking/[id]"
+          options={{ headerShown: false }}
+        />
       </Stack>
     </GestureHandlerRootView>
   );

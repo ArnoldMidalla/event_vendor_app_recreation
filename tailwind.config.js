@@ -8,6 +8,7 @@ module.exports = {
       fontFamily: {
         dmsans: ["DMSans_400Regular"],
         dmsansMedium: ["DMSans_500Medium"],
+        dmsansSemi: ["DMSans_600SemiBold"],
         dmsansBold: ["DMSans_700Bold"],
       },
       colors: {

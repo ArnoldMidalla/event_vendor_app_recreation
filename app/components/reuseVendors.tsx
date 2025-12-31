@@ -3,7 +3,7 @@ import { Image, Pressable, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 
 import { BlurView } from "expo-blur";
-import { CalendarCheck2, CircleCheck, Star } from "lucide-react-native";
+import { BadgeCheck, CalendarCheck2, Star } from "lucide-react-native";
 
 interface propsss {
   title: string;
@@ -13,6 +13,8 @@ interface propsss {
   type: string;
   subType: string;
   price: number;
+  id: string;
+  isVerified: boolean;
 }
 
 export default function ReuseVendors({
@@ -23,12 +25,19 @@ export default function ReuseVendors({
   type,
   subType,
   price,
+  id,
+  isVerified,
 }: propsss) {
   const router = useRouter();
   return (
     <Pressable
       className="p-2 border h-fit rounded-2xl border-neutral-300 bg-white flex flex-col gap-2 relative"
-      onPress={() => router.push("/onboarding/page")}
+      onPress={() =>
+        router.push({
+          pathname: "/singleVendor/[id]",
+          params: { id: id.toString() },
+        })
+      }
     >
       <BlurView
         intensity={40}
@@ -41,7 +50,7 @@ export default function ReuseVendors({
       <Image source={{ uri: image }} className="w-52 h-32 rounded-xl" />
       <View className="flex flex-row items-center gap-1">
         <Text className="font-dmsansMedium tracking-tight">{title}</Text>
-        <CircleCheck fill={"green"} color={"white"} size={17} />
+        {isVerified && <BadgeCheck fill={"green"} color={"white"} size={17} />}
       </View>
       <View className="flex flex-row gap-1 items-center">
         <Star color={"gold"} fill={"gold"} size={13} />

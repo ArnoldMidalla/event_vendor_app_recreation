@@ -37,7 +37,7 @@ export default function Index() {
           // paddingHorizontal: 24,
           paddingTop: 32,
           paddingBottom: 100,
-          gap: 24,
+          gap: 22,
         }}
       >
         <View className="flex flex-row justify-between px-6">
@@ -81,7 +81,7 @@ export default function Index() {
         <View className="flex flex-row w-full justify-between h-28 px-6">
           <Pressable onPress={()=> router.push("/events/page")} className="h-full w-[10.6rem] rounded-xl relative overflow-hidden">
             <Text
-              className="font-dmsans top-4 left-2 text-white absolute z-10"
+              className="font-dmsans top-2 left-2 text-white absolute z-10"
               style={{ zIndex: 10 }}
             >
               Find Event
@@ -104,7 +104,7 @@ export default function Index() {
             />
           </Pressable>
         </View>
-        <View className="flex flex-col gap-4">
+        <View className="flex flex-col gap-3">
           <View className="flex flex-row justify-between px-6">
             <Text className="font-dmsansMedium text-lg tracking-tighter">
               Latest events
@@ -139,7 +139,7 @@ export default function Index() {
             />
           </View>
         </View>
-        <View className="flex flex-col gap-4">
+        <View className="flex flex-col gap-3">
           <View className="flex flex-row justify-between px-6">
             <Text className="font-dmsansMedium text-lg tracking-tighter">
               Top vendors
@@ -164,6 +164,8 @@ export default function Index() {
                   type={item.type}
                   subType={item.subType}
                   price={item.price}
+                  id={item.id.toString()}
+                  isVerified={item.isVerified}
                 />
               )}
               keyExtractor={(item) => item.id.toString()} // Extracts a unique key for each item . id must be string, so this or convert id to "1"
