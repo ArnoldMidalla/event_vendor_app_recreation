@@ -12,7 +12,7 @@ export default function SingleTicket() {
     <SafeAreaView className="flex-1 pt-10 pb-6 gap-6 bg-[#fcfbfc]">
       <Backbar title="Ticket" />
       <View className="px-6">
-        <View className={`bg-${item?.color} rounded-t-2xl p-2 flex gap-4`}>
+        <View className={`rounded-t-2xl p-2 flex gap-4`} style={{ backgroundColor: item?.color }}>
           <Image
             // source={require("@/public/on.jpg")}
             source={{ uri: item?.image }}
@@ -59,19 +59,19 @@ export default function SingleTicket() {
                   Order ID
                 </Text>
                 <Text className="font-dmsansMedium text-white/80 tracking-tight text-sm">
-                  PPEN0992319
+                  {item?.orderId}
                 </Text>
               </View>
               </View>
             </View>
           </View>
         </View>
-        <View className={`bg-${item?.color} h-8 flex flex-row justify-between`}>
+        <View className={`h-8 flex flex-row justify-between`} style={{backgroundColor: item?.color}}>
           <View className="w-4 bg-[#fcfbfc] rounded-full rounded-l-none" />
           <View className="w-4 bg-[#fcfbfc] rounded-full rounded-r-none" />
         </View>
         <View
-          className={`bg-${item?.color} rounded-b-2xl p-2 flex items-center justify-center`}
+          className={`rounded-b-2xl p-2 flex items-center justify-center`} style={{backgroundColor: item?.color}}
         >
           <Text className="font-dmsansMedium text-white tracking-tight">
             Scan QR code

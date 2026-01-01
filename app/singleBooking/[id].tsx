@@ -43,7 +43,7 @@ export default function SingleBooking() {
               {item?.packageVal} - {item?.price}
             </Text>
             <Text className="text-neutral-500 font-dmsansMedium text-sm tracking-tight">
-              Order ID: OIENWPVIOP20932
+              Order ID: {item?.orderId}
             </Text>
           </View>
         </View>

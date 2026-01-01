@@ -9,6 +9,7 @@ export const locations = [
 export const Data = [
   {
     id: 1,
+    orderId: "ORD-7241-AX",
     title: "Asake's Nu Tour",
     address: "Teslim Balogun Stadium, Surulere",
     date: "02.August.2025 - 5:00pm",
@@ -24,10 +25,11 @@ export const Data = [
     dateMon: "Sept",
     dateDay: "02",
     dateTime: 4,
-    color: "purple-900",
+    color: "#881337",
   },
   {
     id: 2,
+    orderId: "ORD-9910-LF",
     title: "Lagos Food Fest",
     address: "Landmark Centre, Ikeja",
     date: "03.August.2025 - 5:00pm",
@@ -43,11 +45,11 @@ export const Data = [
     dateMon: "Aug",
     dateDay: "27",
     dateTime: 5,
-    color: "emerald-900",
+    color: "#064e3b",
   },
-
   {
     id: 3,
+    orderId: "ORD-5523-PS",
     title: "Paint & Sip: Art x Vibes",
     address: "The Yellow House, Lekki",
     date: "03.August.2025 - 5:00pm",
@@ -63,13 +65,14 @@ export const Data = [
     dateMon: "Aug",
     dateDay: "15",
     dateTime: 3,
-    color: "rose-800",
+    color: "#701a75",
   },
 ];
 
 export const VendorsData = [
   {
     id: 1,
+    orderId: "VEN-1044-CI",
     title: "Chef Ireti's kitchen",
     rating: 4.8,
     noStars: 5,
@@ -86,9 +89,12 @@ export const VendorsData = [
     isVerified: true,
     packageVal: "Basic package",
     dateTime: "13.August.2025 - 9:00am",
+    date: "13.August.2025",
+    time: "9:00am"
   },
   {
     id: 2,
+    orderId: "VEN-3892-DS",
     title: "DJ Shakur",
     rating: 5,
     noStars: 5,
@@ -105,9 +111,12 @@ export const VendorsData = [
     isVerified: false,
     packageVal: "Custom package",
     dateTime: "24.August.2025 - 9:00am",
+    date: "24.August.2025",
+    time: "9:00am"
   },
   {
     id: 3,
+    orderId: "VEN-6627-DA",
     title: "Daniel Adeyemi",
     rating: 4.8,
     noStars: 5,
@@ -124,6 +133,8 @@ export const VendorsData = [
     isVerified: true,
     packageVal: "Premium package",
     dateTime: "16.August.2025 - 11:00am",
+    date: "16.August.2025",
+    time: "11:00am"
   },
 ];
 

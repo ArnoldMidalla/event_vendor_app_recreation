@@ -50,7 +50,7 @@ export default function ReuseEvents({
       />
       <View className="flex flex-row justify-between items-center">
 
-      <Text className="font-dmsansMedium tracking-tight">{title}</Text>
+      <Text className="font-dmsansSemi tracking-tight">{title}</Text>
       <Heart color={"#8e8e8e"} size={17} />
       </View>
       <View className="flex flex-row items-end gap-0.5">

@@ -1,50 +1,60 @@
-# Welcome to your Expo app 👋
+# EventVendor Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Project Overview
+EventVendor is a high-fidelity mobile application built with **React Native** and **Expo** designed to streamline the connection between event-goers and service providers. This platform allows users to discover local events, purchase tickets, and hire professional vendors (like caterers, DJs, and photographers) through a polished, intuitive interface. 🎫
 
-## Get started
+The project prioritizes performance and user experience, utilizing **TypeScript** for type safety and **NativeWind** for consistent, modern styling. From dynamic event discovery to a multi-step vendor booking flow, EventVendor serves as a comprehensive hub for the event management ecosystem.
 
-1. Install dependencies
+## Features
+- **Discovery Engine**: Browse curated lists of upcoming events and top-rated vendors with advanced filtering for food, concerts, art, and more.
+- **Dynamic Ticket Selection**: Interactive ticket purchasing experience using high-performance bottom sheets for selecting general, VIP, or backstage access.
+- **Customizable Vendor Packages**: A multi-stage booking process allowing users to tailor services, such as selecting specific meal courses for catering packages.
+- **Unified Messaging System**: An integrated chat interface for direct communication between users and vendors.
+- **Digital Ticket Wallet**: Secure storage for purchased tickets featuring QR code generation for seamless event entry.
+- **Advanced UI/UX**: Smooth transitions and feedback loops powered by **React Native Reanimated** and **Expo Blur**.
 
-   ```bash
-   npm install
-   ```
+## Usage
+The application is structured using **Expo Router** for file-based navigation, ensuring a clean and scalable routing architecture.
 
-2. Start the app
+### Navigation Flow
+- **Onboarding**: Users are greeted with a professional entry screen introducing the platform's core value proposition.
+- **Home Dashboard**: The central hub for searching events/vendors, viewing promotions, and accessing quick links to categories.
+- **Event Interaction**: Clicking an event opens a detailed view where users can read event details, check venue locations, and trigger the ticket selection modal.
+- **Vendor Booking**: Users can navigate through a customization flow (`app/vendorCheckout/customPack/[id]`) to select services, followed by a secure checkout simulation.
+- **Bookings & Favorites**: Dedicated sections to manage active orders and save preferred events or vendors for later.
 
-   ```bash
-   npx expo start
-   ```
+### Component Architecture
+The project utilizes a modular component strategy found in `/app/components`:
+- `Backbar.tsx`: A reusable navigation header with verification badge support.
+- `EventTicketStyle.tsx`: A specialized layout for rendering event tickets with a "punched" visual aesthetic.
+- `ReuseEvents.tsx` & `ReuseVendors.tsx`: Standardized cards for consistent data display across the marketplace.
 
-In the output, you'll find options to open the app in a
+## Technologies Used
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+| Technology | Purpose | Link |
+|---|---|---|
+| **React Native** | Core Framework | [reactnative.dev](https://reactnative.dev/) |
+| **Expo** | Development Platform | [expo.dev](https://expo.dev/) |
+| **TypeScript** | Static Typing | [typescriptlang.org](https://www.typescriptlang.org/) |
+| **NativeWind** | Tailwind CSS for Mobile | [nativewind.dev](https://www.nativewind.dev/) |
+| **Expo Router** | File-based Routing | [expo.github.io/router](https://expo.github.io/router/docs/) |
+| **Lucide Icons** | Vector Icon Library | [lucide.dev](https://lucide.dev/) |
+| **Reanimated** | Gesture-based Animations | [swmansion.com](https://software-mansion.github.io/react-native-reanimated/) |
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## License
+The project is currently private. Please refer to the repository owner for permissions regarding usage or redistribution.
 
-## Get a fresh project
+## Author Info
+**[Your Name]**
+- LinkedIn: [Your Profile Link]
+- Twitter/X: [Your Handle]
+- Portfolio: [Your Website Link]
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+[![Readme was generated by Dokugen](https://img.shields.io/badge/Readme%20was%20generated%20by-Dokugen-brightgreen)](https://www.npmjs.com/package/dokugen)

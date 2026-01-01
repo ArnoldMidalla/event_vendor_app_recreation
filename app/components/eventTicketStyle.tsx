@@ -36,8 +36,8 @@ export default function EventTicketStyle({
     >
       <View className="flex flex-1 gap-1.5 py-3 pl-3 border border-neutral-300 border-r-0 rounded-l-xl rounded-y-xl">
         <View
-          className={`px-3 bg-${color} rounded-full self-start`}
-          style={{ paddingVertical: 6 }}
+          className={`px-3 rounded-full self-start`}
+          style={{ paddingVertical: 6, backgroundColor: color }}
         >
           <Text className="text-white text-xs font-dmsansMedium">{type}</Text>
         </View>
@@ -65,8 +65,8 @@ export default function EventTicketStyle({
         <View className="bg-[#fcfbfc] rounded-t-full h-4 border border-b-0 border-neutral-300"/>
       </View>
       <View
-        className={`bg-${color} rounded-r-xl border border-neutral-300 border-l-0 flex items-center justify-center`}
-        style={{ width: 66 }}
+        className={`rounded-r-xl border border-neutral-300 border-l-0 flex items-center justify-center`}
+        style={{ width: 66, backgroundColor: color }}
       >
         <Text className="font-dmsansBold text-lg text-center text-white tracking-tighter leading-tight">
           {dateMon}

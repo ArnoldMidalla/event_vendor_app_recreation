@@ -2,7 +2,7 @@ import Backbar from "@/app/components/backbar";
 import { drink, main, starters, VendorsData } from "@/app/data";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { BadgePercent, CalendarDays, Circle } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Image,
   Pressable,
@@ -14,6 +14,9 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { BlurView } from "expo-blur";
+import { Modal } from "react-native";
+
 export default function CustomPackage() {
   const router = useRouter();
   // const item = VendorsData.find((p) => p.id === 1);
@@ -21,6 +24,21 @@ export default function CustomPackage() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const item = VendorsData.find((p) => p.id === Number(id));
   const [selected, setSelected] = useState<Number>();
+
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+  // auto close after 3 secs
+  useEffect(() => {
+    if (showSuccessModal) {
+      const timer = setTimeout(() => {
+        setShowSuccessModal(false);
+        // router.replace("/");
+      }, 100000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccessModal]);
+
   return (
     <SafeAreaView className="flex-1 bg-main pt-6 flex justify-between">
       <StatusBar barStyle="dark-content" />
@@ -58,7 +76,7 @@ export default function CustomPackage() {
                     </Text>
                   </View>
                   <Text className="font-dmsansMedium tracking-tighter text-sm text-black/60">
-                    Includes: id is {typeof(id)+ id}
+                    Includes: id is {typeof id + id}
                   </Text>
                   <Text className="font-dmsansMedium tracking-tighter text-sm text-black/60">
                     1 Starter: {starters[0]}
@@ -156,13 +174,17 @@ export default function CustomPackage() {
                   size={17}
                   //   style={{ margin: 12 }}
                 />
-                <TextInput placeholder="Enter coupon code" className="flex-1" style={{
-                fontSize: 12,
-                color: "#1f2937",
-                fontFamily: "DMSans_400Regular",
-                letterSpacing: -0.5,
-                minHeight: 43,
-              }} />
+                <TextInput
+                  placeholder="Enter coupon code"
+                  className="flex-1"
+                  style={{
+                    fontSize: 12,
+                    color: "#1f2937",
+                    fontFamily: "DMSans_400Regular",
+                    letterSpacing: -0.5,
+                    minHeight: 43,
+                  }}
+                />
                 <Pressable className="bg-sec flex items-center justify-center w-20 rounded-xl h-full">
                   <Text className="font-dmsansMedium text-white tracking-tighter text-sm">
                     Apply
@@ -177,13 +199,142 @@ export default function CustomPackage() {
       <View className="px-6">
         <Pressable
           className="bg-sec h-14 rounded-xl flex justify-center items-center"
-          onPress={() => router.push("/")}
+          // onPress={() => router.push("/")}
+          onPress={() => {
+            // simulate successful payment
+            setTimeout(() => {
+              setShowSuccessModal(true);
+            }, 800);
+          }}
         >
           <Text className="font-dmsansMedium text-white tracking-tighter">
-            Pay total N10,000
+            Pay total N{item?.price}
           </Text>
         </Pressable>
       </View>
+      <Modal
+        transparent
+        visible={showSuccessModal}
+        animationType="fade"
+        statusBarTranslucent
+      >
+        <BlurView
+          intensity={70}
+          tint="dark"
+          className="flex-1 justify-center items-center"
+        >
+          {/* tap outside to close */}
+          <Pressable
+            className="absolute inset-0"
+            onPress={() => setShowSuccessModal(false)}
+          />
+
+          {/* modal card */}
+          <View className="bg-[#f5f5f5] w-[88%] rounded-3xl overflow-hidden">
+            {/* <CheckCircle2 size={56} color="#16a34a" /> */}
+            <Image
+              source={require("@/public/vendorCongrats.png")}
+              className="h-40 w-full"
+            />
+
+            <View className="p-4 items-center gap-4">
+              <Text className="font-dmsansSemi text-xl tracking-tighter">
+                Vendor booked successfully
+              </Text>
+
+              <View className="bg-white w-full rounded-2xl border border-neutral-300 p-3 gap-3">
+                <View className="flex flex-row gap-2">
+                  <Image
+                    source={{ uri: item?.image }}
+                    className="w-20 h-20 rounded-xl"
+                  />
+                  <View className="flex justify-center gap-0.5">
+                    <Text className="font-dmsansSemi tracking-tighter text-lg">
+                      {item?.title}
+                    </Text>
+                    <Text className="font-dmsansMedium tracking-tighter text-sm text-black/60">
+                      Order ID: {item?.orderId}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  className="w-full h-[0.15rem] rounded-full bg-neutral-300"
+                  style={{ height: 1.5 }}
+                />
+                <View className="flex flex-row justify-between">
+                  {/* left */}
+                  <View className="gap-2">
+                    {/* up */}
+                    <View>
+                      <Text className="text-sm font-dmsansMedium text-neutral-500">
+                        Delivery date
+                      </Text>
+                      <Text className="text-sm font-dmsansSemi">
+                        {item?.date}
+                      </Text>
+                    </View>
+                    {/* down */}
+                    <View>
+                      <Text className="text-sm font-dmsansMedium text-neutral-500">
+                        Location
+                      </Text>
+                      <Text className="text-sm font-dmsansSemi">
+                        {item?.address}
+                      </Text>
+                    </View>
+                  </View>
+
+                  {/* right */}
+                  <View className="gap-2">
+                    {/* up */}
+                    <View>
+                      <Text className="text-sm font-dmsansMedium text-neutral-500">
+                        Time
+                      </Text>
+                      <Text className="text-sm font-dmsansSemi">
+                        {item?.time}
+                      </Text>
+                    </View>
+                    {/* down */}
+                    <View>
+                      <Text className="text-sm font-dmsansMedium text-neutral-500">
+                        Amount
+                      </Text>
+                      <Text className="text-sm font-dmsansSemi">
+                        N{item?.price}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+              <View className="gap-2 w-full">
+                <Pressable
+                  className="bg-sec w-full h-12 rounded-xl flex justify-center items-center mt-2"
+                  onPress={() => {
+                    setShowSuccessModal(false);
+                    // router.replace("/");
+                  }}
+                >
+                  <Text className="font-dmsansMedium text-white tracking-tighter">
+                    View Order Details
+                  </Text>
+                </Pressable>
+                <Pressable
+                  className="bg-[#f5f5f5] border border-sec w-full h-12 rounded-xl flex justify-center items-center mt-2"
+                  onPress={() => {
+                    setShowSuccessModal(false);
+                    router.replace("/vendors/page");
+                  }}
+                >
+                  <Text className="font-dmsansMedium text-sec tracking-tighter">
+                    Browse More Vendors
+                  </Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>
+        </BlurView>
+      </Modal>
     </SafeAreaView>
   );
 }

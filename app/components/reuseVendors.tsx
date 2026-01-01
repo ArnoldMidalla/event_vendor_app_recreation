@@ -49,7 +49,7 @@ export default function ReuseVendors({
       </BlurView>
       <Image source={{ uri: image }} className="w-52 h-32 rounded-xl" />
       <View className="flex flex-row items-center gap-1">
-        <Text className="font-dmsansMedium tracking-tight">{title}</Text>
+        <Text className="font-dmsansSemi tracking-tight">{title}</Text>
         {isVerified && <BadgeCheck fill={"green"} color={"white"} size={17} />}
       </View>
       <View className="flex flex-row gap-1 items-center">
