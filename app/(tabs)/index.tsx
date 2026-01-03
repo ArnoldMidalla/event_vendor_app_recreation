@@ -78,8 +78,8 @@ export default function Index() {
           </View>
         </View>
         <SearchBar placeholder="Search for events or vendors" />
-        <View className="flex flex-row w-full justify-between h-28 px-6">
-          <Pressable onPress={()=> router.push("/events/page")} className="h-full w-[10.6rem] rounded-xl relative overflow-hidden">
+        <View className="flex flex-row w-full gap-6 justify-between h-28 px-6">
+          <Pressable onPress={()=> router.push("/events/page")} className="h-full flex-1 rounded-xl relative overflow-hidden">
             <Text
               className="font-dmsans top-2 left-2 text-white absolute z-10"
               style={{ zIndex: 10 }}
@@ -91,7 +91,7 @@ export default function Index() {
               className="w-full h-full object-cover"
             />
           </Pressable>
-          <Pressable onPress={()=> router.push("/vendors/page")} className="border border-sec h-full w-[10.6rem] rounded-xl relative overflow-hidden">
+          <Pressable onPress={()=> router.push("/vendors/page")} className="border border-sec h-full flex-1 rounded-xl relative overflow-hidden">
             <Text
               className="font-dmsans top-2 left-2 text-sec absolute z-10"
               style={{ zIndex: 10 }}
@@ -176,9 +176,6 @@ export default function Index() {
             />
           </View>
         </View>
-        {/* <Pressable onPress={() => router.push("/onboarding/page")}>
-          <Text>onboarding</Text>
-        </Pressable> */}
       </ScrollView>
     </SafeAreaView>
   );
